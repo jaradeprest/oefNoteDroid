@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">oefNoteDroid</string>
+    <string name="txt_lbl_new_title">New Note</string>
+    <string name="txt_btn_save">Save</string>
+    <string name="placeholder_note">Write your note here</string>
+    <string name="lbl_tv_note">Your Note:</string>
+    <string name="txt_lbl_title">Title Note:</string>
+</resources>
