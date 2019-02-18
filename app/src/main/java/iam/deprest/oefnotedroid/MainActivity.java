@@ -18,18 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView rvNotes;
     private NoteAdapter adapter;
-
-    /*private View.OnClickListener detailListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Note gekozenNote = ?????????? path naar geklikte note
-
-            Intent intent = new Intent(getApplicationContext(), DetailActivity.class);
-
-            intent.putExtra("note", gekozenNote);
-            startActivity(intent);
-        }
-    };*/
+    private Note clickedNote;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -39,6 +28,11 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.mi_btn_delete){
+            //start action
+            NoteDAO.getInstance().getNoteList().remove(clickedNote);
+        }
+
         if (item.getItemId() == R.id.mi_add_note){
             //start nav
             Intent intent = new Intent(this, NewActivity.class);
@@ -46,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
