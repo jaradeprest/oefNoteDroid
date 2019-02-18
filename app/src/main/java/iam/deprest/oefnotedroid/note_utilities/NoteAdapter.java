@@ -9,23 +9,43 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import iam.deprest.oefnotedroid.R;
 import iam.deprest.oefnotedroid.model.Note;
 
 public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder> {
 
-    public class NoteViewHolder extends RecyclerView.ViewHolder {
-        public final TextView tvNote, tvTitle, tvDate;
+    public class NoteViewHolder extends RecyclerView.ViewHolder /*implements View.OnClickListener*/ {
+        public final TextView tvNote, tvTitle, tvDate, tvId;
 
-        public NoteViewHolder(@NonNull View itemView) {
+
+        public NoteViewHolder(View view){
+            super(view);
+            view.setTag(this);
+            //view.setOnClickListener(this);
+            tvTitle = view.findViewById(R.id.tv_title);
+            tvDate = view.findViewById(R.id.tv_date);
+            tvNote = view.findViewById(R.id.tv_note);
+            tvId = view.findViewById(R.id.tv_id);
+
+            //view.setOnClickListener(this);
+        }
+
+        /*@Override
+        public void onClick(View v) {
+            clickListener.onItem(v);
+        }*/
+
+        /*public NoteViewHolder(@NonNull View itemView) {
             super(itemView);
             itemView.setTag(this);
+            //itemView.setOnClickListener(this);
             tvTitle = itemView.findViewById(R.id.tv_title);
             tvDate = itemView.findViewById(R.id.tv_date);
             tvNote = itemView.findViewById(R.id.tv_note);
-        }
+        }*/
+
+        //TODO clicklisteren aanmaken en variabele bijhouden
     }
 
     private ArrayList<Note> notes;
@@ -51,13 +71,15 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteViewHolder
         // i = positionInList
         Note noteInRij = notes.get(i);
         noteViewHolder.tvTitle.setText(noteInRij.getTitle());
-        noteViewHolder.tvDate.setText(noteInRij.getDate().toString());
+        noteViewHolder.tvDate.setText(noteInRij.getDate());
         noteViewHolder.tvNote.setText(noteInRij.getNote());
-
+        noteViewHolder.tvId.setText(String.valueOf(noteInRij.getId()));
     }
 
     @Override
     public int getItemCount() {
         return notes.size();
     }
+
+
 }

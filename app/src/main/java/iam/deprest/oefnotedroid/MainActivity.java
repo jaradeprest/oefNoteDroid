@@ -19,6 +19,18 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView rvNotes;
     private NoteAdapter adapter;
 
+    /*private View.OnClickListener detailListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Note gekozenNote = ?????????? path naar geklikte note
+
+            Intent intent = new Intent(getApplicationContext(), DetailActivity.class);
+
+            intent.putExtra("note", gekozenNote);
+            startActivity(intent);
+        }
+    };*/
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);

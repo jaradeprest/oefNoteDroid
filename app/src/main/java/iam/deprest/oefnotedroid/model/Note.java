@@ -8,19 +8,26 @@ import java.util.Date;
 
 public class Note implements Serializable {
 
+    static int counter;
+
     private String title;
     private String note;
     private String date;
     private Calendar calendar = Calendar.getInstance();
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+    private int id;
 
     public Note() {
+        counter++;
+        id = counter;
     }
 
     public Note(String title, String note) {
+        counter++;
         this.title = title;
         this.note = note;
         this.date = simpleDateFormat.format(calendar.getTime());
+        this.id = counter;
     }
 
     public String getTitle() {
@@ -47,12 +54,19 @@ public class Note implements Serializable {
         this.date = date;
     }
 
+    public int getId() {
+        return id;
+    }
+
     @Override
     public String toString() {
         return "Note{" +
                 "title='" + title + '\'' +
                 ", note='" + note + '\'' +
                 ", date='" + date + '\'' +
+                ", calendar=" + calendar +
+                ", simpleDateFormat=" + simpleDateFormat +
+                ", id=" + id +
                 '}';
     }
 }
