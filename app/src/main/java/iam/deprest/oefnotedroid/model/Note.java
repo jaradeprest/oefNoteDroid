@@ -1,33 +1,29 @@
 package iam.deprest.oefnotedroid.model;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
+import android.arch.persistence.room.PrimaryKey;
 import java.io.Serializable;
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
+@Entity
 public class Note implements Serializable {
 
-    static int counter;
-
+    @PrimaryKey (autoGenerate = true)
+    private long id;
     private String title;
     private String note;
-    private String date;
-    private Calendar calendar = Calendar.getInstance();
-    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm");
-    private int id;
+    private Date publishDate;
+
 
     public Note() {
-        counter++;
-        id = counter;
     }
 
-    public Note(String title, String note) {
-        counter++;
+    @Ignore
+    public Note(String title, String note, Date publishDate) {
         this.title = title;
         this.note = note;
-        this.date = simpleDateFormat.format(calendar.getTime());
-        this.id = counter;
+        this.publishDate = publishDate;
     }
 
     public String getTitle() {
@@ -46,27 +42,19 @@ public class Note implements Serializable {
         this.note = note;
     }
 
-    public String getDate() {
-        return date;
+    public Date getPublishDate() {
+        return publishDate;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setPublishDate(Date publishDate) {
+        this.publishDate = publishDate;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    @Override
-    public String toString() {
-        return "Note{" +
-                "title='" + title + '\'' +
-                ", note='" + note + '\'' +
-                ", date='" + date + '\'' +
-                ", calendar=" + calendar +
-                ", simpleDateFormat=" + simpleDateFormat +
-                ", id=" + id +
-                '}';
+    public void setId(long id){
+        this.id = id;
     }
 }

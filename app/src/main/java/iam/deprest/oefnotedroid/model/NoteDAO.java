@@ -1,15 +1,27 @@
 package iam.deprest.oefnotedroid.model;
 
+import android.arch.persistence.room.Dao;
+import android.arch.persistence.room.Delete;
+import android.arch.persistence.room.Insert;
+import android.arch.persistence.room.Query;
+import android.arch.persistence.room.Update;
+
 import java.util.ArrayList;
+import java.util.List;
 
-public class NoteDAO {
-    private static final NoteDAO ourInstance = new NoteDAO();
+@Dao
+public interface NoteDAO {
 
-    private ArrayList<Note> noteList = new ArrayList<>();
+    @Insert
+    void insertNote(Note newNote);
 
-    public static NoteDAO getInstance(){return ourInstance;}
+    @Delete
+    void deleteNote(Note deletedNote);
 
-    public ArrayList<Note> getNoteList(){return noteList;}
+    @Update
+    void updateNote(Note changedNote);
 
-    public void addNote(Note newNote){noteList.add(newNote);}
+    @Query("SELECT * FROM Note") //alle notes zien
+    List<Note> findAllNotes();
+
 }

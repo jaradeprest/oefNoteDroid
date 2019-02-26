@@ -4,11 +4,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/mi_btn_delete"
-        android:icon="@android:drawable/ic_menu_delete"
-        android:title="delete"
-        app:showAsAction="always" />
-    <item
         android:id="@+id/mi_add_note"
         android:icon="@android:drawable/ic_menu_add"
         android:title="add"
